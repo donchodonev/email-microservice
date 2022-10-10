@@ -77,6 +77,9 @@
             "location": "[parameters('location')]",
             "sku": {
                 "name": "Standard"
+            },
+            "properties": {
+
             }
         },
         {
@@ -191,7 +194,7 @@
                         },
                         {
                             "name": "FUNCTIONS_WORKER_RUNTIME",
-                            "value": "dotnet"
+                            "value": "node"
                         },
                         {
                             "name": "WEBSITE_NODE_DEFAULT_VERSION",
