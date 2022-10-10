@@ -1,0 +1,80 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serviceBus_Namespace_Name": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Service Bus namespace"
+            }
+        },
+        "serviceBusTopicName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Topic"
+            }
+        },
+        "serviceBusSubscriptionName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Subscription"
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2021-11-01",
+            "name": "[parameters('serviceBus_Namespace_Name')]",
+            "type": "Microsoft.ServiceBus/namespaces",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "Standard"
+            }
+        },
+        {
+            "type": "Microsoft.ServiceBus/namespaces/topics",
+            "apiVersion": "2021-11-01",
+            "location": "[parameters('location')]",
+            "name": "[format('{0}/{1}', parameters('serviceBus_Namespace_Name'), parameters('serviceBusTopicName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBus_Namespace_Name'))]"
+            ],
+            "properties": {
+                "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                "maxSizeInMegabytes": 1024,
+                "requiresDuplicateDetection": false,
+                "duplicateDetectionHistoryTimeWindow": "PT10M",
+                "enableBatchedOperations": false,
+                "supportOrdering": false,
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                "enablePartitioning": false,
+                "enableExpress": false
+            }
+        },
+        {
+            "apiVersion": "2021-11-01",
+            "name": "[format('{0}/{1}/{2}', parameters('serviceBus_Namespace_Name'), parameters('serviceBusTopicName'), parameters('serviceBusSubscriptionName'))]",
+            "type": "Microsoft.ServiceBus/namespaces/topics/subscriptions",
+            "dependsOn": [
+                "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBus_Namespace_Name'))]",
+                "[resourceId('Microsoft.ServiceBus/namespaces/topics', parameters('serviceBus_Namespace_Name'), parameters('serviceBusTopicName'))]"
+            ],
+            "properties": {
+                "lockDuration": "PT1M",
+                "requiresSession": false,
+                "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                "deadLetteringOnMessageExpiration": false,
+                "maxDeliveryCount": 10,
+                "enableBatchedOperations": false,
+                "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S"
+            }
+        }
+    ]
+}
