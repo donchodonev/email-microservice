@@ -1,0 +1,1 @@
+az deployment group create --name EmailServiceDeployment --resource-group EmailService_RG --template-file azuredeploy.json --parameters azuredeploy.parameters.json
