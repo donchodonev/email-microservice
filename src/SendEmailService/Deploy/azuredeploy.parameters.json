@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "UK West"
+    },
+    "serviceBusNamespaceName": {
+      "value": "sb-ns-emailservice"
+    },
+    "serviceBusTopicName": {
+      "value": "sendemail"
+    },
+    "serviceBusSubscriptionName": {
+      "value": "SendEmailService"
+    },
+    "storageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "storageAccountName": {
+      "value": "afemailservicestg"
+    },
+    "appInsightsLocation": {
+      "value": "UK West"
+    },
+    "appInsightsName": {
+      "value": "ai-af-email-service"
+    },
+    "appName": {
+      "value": "email-service-func"
+    },
+    "hostingPlanName": {
+      "value": "hosting-af-email-service"
+    }
+  }
+}
