@@ -31,6 +31,12 @@
     },
     "hostingPlanName": {
       "value": "hosting-af-email-service"
+    },
+    "keyVaultName": {
+      "value": "email-keyVault"
+    },
+    "resourceGroupName": {
+        "value": "EmailService_RG"
     }
   }
 }
