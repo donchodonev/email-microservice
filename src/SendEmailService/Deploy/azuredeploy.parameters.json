@@ -36,7 +36,7 @@
       "value": "email-keyVault"
     },
     "resourceGroupName": {
-        "value": "EmailService_RG"
+      "value": "EmailService_RG"
     }
   }
 }

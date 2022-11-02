@@ -1,18 +1,18 @@
+using System;
 using Microsoft.Azure.WebJobs;
 
 namespace SendEmailService
 {
     public class SendEmail
     {
-        //DO NOT COMMIT
         [FunctionName(nameof(SendEmail))]
         public void Run(
             [ServiceBusTrigger(
-            "ASBSettings:TopicName",
-            "ASBSettings:SubscriptionName",
-            Connection = "ASBSettings:ConnectionString")] EmailMessage message)
+            ServiceBusSettings.Topic,
+            ServiceBusSettings.Subscription,
+            Connection = "ASBSettings:ConnectionString")] string message)
         {
-            //TODO
+            Console.WriteLine(message);
         }
     }
 }

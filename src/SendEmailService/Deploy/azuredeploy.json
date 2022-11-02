@@ -242,6 +242,18 @@
             {
               "name": "FUNCTIONS_WORKER_RUNTIME",
               "value": "dotnet"
+            },
+            {
+              "name": "ASBSettings:ConnectionString",
+              "value": "[listKeys(resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), 'RootManageSharedAccessKey'), '2021-11-01').primaryConnectionString]"
+            },
+            {
+              "name": "ASBSettings:TopicName",
+              "value": "sendemail"
+            },
+            {
+              "name": "ASBSettings:SubscriptionName",
+              "value": "SendEmailService"
             }
           ]
         }
