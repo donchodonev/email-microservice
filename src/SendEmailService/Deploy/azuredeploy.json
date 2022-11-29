@@ -2,9 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "resourceGroupName": {
-      "type": "string"
-    },
     "storageAccountType": {
       "type": "string",
       "allowedValues": [
@@ -94,6 +91,16 @@
         "description": "Specifies the permissions to secrets in the vault. Valid values are: all, get, list, set, delete, backup, restore, recover, and purge."
       }
     },
+    "secretsAdminPermissions": {
+      "type": "array",
+      "defaultValue": [
+        "SET",
+        "DELETE"
+      ],
+      "metadata": {
+        "description": "Specifies the permissions to secrets in the vault. Valid values are: all, get, list, set, delete, backup, restore, recover, and purge."
+      }
+    },
     "keyVaultSkuName": {
       "type": "string",
       "defaultValue": "standard",
@@ -121,9 +128,6 @@
       "location": "[parameters('location')]",
       "sku": {
         "name": "Standard"
-      },
-      "properties": {
-
       }
     },
     {
@@ -273,6 +277,13 @@
             "tenantId": "[parameters('tenantId')]",
             "permissions": {
               "secrets": "[parameters('secretsPermissions')]"
+            }
+          },
+          {
+            "objectId": "68a5c14a-0647-4e80-a076-8d50694e5ad2",
+            "tenantId": "[parameters('tenantId')]",
+            "permissions": {
+              "secrets": "[concat(parameters('secretsPermissions'), parameters('secretsAdminPermissions'))]"
             }
           }
         ],
