@@ -11,6 +11,6 @@ namespace SendEmailService.Services
             string recipientEmail,
             string recipientName,
             string emailContent,
-            string subject = "No Subject")
+            string subject = "No Subject");
     }
 }
