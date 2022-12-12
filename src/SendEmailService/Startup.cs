@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using SendEmailService;
 using SendEmailService.Clients;
+using SendEmailService.Services;
 using SendEmailService.Settings;
 
 [assembly: FunctionsStartup(typeof(Startup))]
@@ -16,6 +17,7 @@ namespace SendEmailService
 
             builder.Services.Configure<KeyVaultSettings>(configuration.GetSection("KeyVaultSettings"));
             builder.Services.AddSingleton<AzureKeyVaultClient>();
+            builder.Services.AddTransient<IEmailSenderService, EmailSenderService>();
         }
     }
 }
