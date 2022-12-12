@@ -252,12 +252,8 @@
               "value": "[listKeys(resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), 'RootManageSharedAccessKey'), '2021-11-01').primaryConnectionString]"
             },
             {
-              "name": "ASBSettings:TopicName",
-              "value": "sendemail"
-            },
-            {
-              "name": "ASBSettings:SubscriptionName",
-              "value": "SendEmailService"
+              "name": "KeyVaultSettings:VaultName",
+              "value": "[parameters('keyVaultName')]"
             }
           ]
         }

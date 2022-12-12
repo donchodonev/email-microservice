@@ -1,4 +1,4 @@
-﻿namespace SendEmailService
+﻿namespace SendEmailService.Settings
 {
     public static class ServiceBusSettings
     {
